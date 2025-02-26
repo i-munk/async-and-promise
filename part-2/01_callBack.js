@@ -1,10 +1,13 @@
 const fs = require("fs");
 
 const getDataFromFile = function (filePath, callback) {
-  // TODO: fs.readFile을 이용해 작성합니다
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      return callback(err, null); // 에러 발생 시 콜백 실행
+    }
+    callback(null, data); // 성공 시 콜백 실행
+  });
 };
-
-// getDataFromFile('README.md', (err, data) => console.log(data));
 
 module.exports = {
   getDataFromFile
